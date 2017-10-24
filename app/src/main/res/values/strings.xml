@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Condroid</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="next_button">Next</string>
+    <string name="content_description">This is app logo</string>
+    <string name="contact_text">Enter Phone Numbers of your trusted contacts</string>
+    <string name="enter_1st_phone_number">Enter 1st Phone Number</string>
+    <string name="enter_2nd_phone_number">Enter 2nd Phone Number</string>
+    <string name="enter_3rd_phone_number">Enter 3rd Phone Number</string>
+    <string name="enter_4th_phone_number">Enter 4th Phone Number</string>
+    <string name="submitBtn">Submit</string>
+</resources>

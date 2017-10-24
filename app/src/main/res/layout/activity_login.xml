@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.roshan.condroid.Login"
+    android:orientation="vertical"
+    android:id="@+id/loginLayout"
+    android:padding="10dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/loginLogo"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"
+            android:contentDescription="@string/content_description" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneNo"
+            android:maxLength="10"
+            android:inputType="number|phone"
+            android:hint="@string/enter_phone_number"
+            android:layout_above="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:hint="@string/enter_password"
+            android:layout_above="@+id/passnote"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passnote"
+            android:text="*This password will be used in sms to authorise the message"
+            android:textColor="#FF0000"
+            android:layout_above="@+id/nextBtn"
+            android:padding="10dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextBtn"
+            android:layout_alignParentBottom="true"
+            android:background="#00386E"
+            android:layout_marginTop="30dp"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:text="@string/next_button"
+            android:onClick="login"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

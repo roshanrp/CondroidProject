@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.roshan.condroid.UserContacts"
+    android:padding="10dp" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactText"
+        android:layout_alignParentTop="true"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/contact_text"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact1"
+        android:layout_above="@+id/contact2"
+        android:padding="10dp"
+        android:maxLength="10"
+        android:inputType="number|phone"
+        android:hint="@string/enter_1st_phone_number"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact2"
+        android:layout_above="@+id/contact3"
+        android:padding="10dp"
+        android:maxLength="10"
+        android:inputType="number|phone"
+        android:hint="@string/enter_2nd_phone_number"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact3"
+        android:layout_above="@+id/contact4"
+        android:padding="10dp"
+        android:maxLength="10"
+        android:inputType="number|phone"
+        android:hint="@string/enter_3rd_phone_number"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact4"
+        android:layout_above="@+id/submitBtn"
+        android:padding="10dp"
+        android:maxLength="10"
+        android:inputType="number|phone"
+        android:hint="@string/enter_4th_phone_number"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitBtn"
+        android:text="@string/submitBtn"
+        android:textAllCaps="true"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:background="#00386E"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF"
+        android:onClick="SubmitContacts"/>
+</RelativeLayout>
+
