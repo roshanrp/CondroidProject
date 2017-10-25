@@ -10,4 +10,7 @@
     <string name="enter_3rd_phone_number">Enter 3rd Phone Number</string>
     <string name="enter_4th_phone_number">Enter 4th Phone Number</string>
     <string name="submitBtn">Submit</string>
+    <string name="commands">COMMANDS</string>
+    <string name="msg_content"><![CDATA[Msg should contain: <password>#<command>\nPassword should match, and command can be any of the following:]]></string>
+    <string name="command_list"><![CDATA[1. Wifi: turn on/off wifi\n2. Ring phone: ring\n3. Change audio modes:\n\t\tsilent mode/vibrate mode/general mode\n4. Data: turn on data\n5. Bluetooth: turn on/off bluetooth\n6. Flashlight: turn on/off flash\n7. Call: call <number>\n\nExample: passwd123#ring\n\nThe app will run in background, please close the app to save power!]]></string>
 </resources>

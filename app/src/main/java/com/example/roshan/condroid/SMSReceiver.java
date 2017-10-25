@@ -1,5 +1,7 @@
 package com.example.roshan.condroid;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +13,12 @@ import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -33,7 +37,7 @@ public class SMSReceiver extends BroadcastReceiver {
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (intent.getAction().equals(ACTION_SMS_RECEIVED)) {
             if (intent.getExtras() != null) {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("Credentials", Context.MODE_PRIVATE);
@@ -124,11 +128,11 @@ public class SMSReceiver extends BroadcastReceiver {
                                     try {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                             CameraManager cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
-                                            String cameraId =  cameraManager.getCameraIdList()[0];
+                                            String cameraId = cameraManager.getCameraIdList()[0];
                                             cameraManager.setTorchMode(cameraId, true);
                                         } else {
-                                                Camera camera;
-                                                Camera.Parameters parameters;
+                                            Camera camera;
+                                            Camera.Parameters parameters;
                                             boolean hasFlash = context.getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
                                             if (hasFlash) {
                                                 camera = Camera.open();
@@ -146,12 +150,26 @@ public class SMSReceiver extends BroadcastReceiver {
                                     try {
                                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                             CameraManager cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
-                                            String cameraId =  cameraManager.getCameraIdList()[0];
+                                            String cameraId = cameraManager.getCameraIdList()[0];
                                             cameraManager.setTorchMode(cameraId, false);
                                         }
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
+                                } else if (Pattern.matches("call\\s[0-9]{10}", msgBody)) {
+                                    String[] splitArray2 = msgBody.split("\\s", 2);
+                                    msgBody = splitArray2[1];
+                                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                    callIntent.setData(Uri.parse("tel:" + msgBody));
+                                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                        return;
+                                    }
+                                    context.startActivity(callIntent);
+
+                                } else if (Pattern.matches("turn\\son\\sbluetooth", msgBody)) {
+                                    bluetoothAdapter.enable();
+                                } else if (Pattern.matches("turn\\soff\\sbluetooth", msgBody)) {
+                                    bluetoothAdapter.disable();
                                 }
                             }
                         }

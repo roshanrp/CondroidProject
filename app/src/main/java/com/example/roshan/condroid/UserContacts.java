@@ -1,5 +1,6 @@
 package com.example.roshan.condroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,18 +10,28 @@ import android.widget.EditText;
 
 public class UserContacts extends AppCompatActivity {
 
+    EditText num1, num2, num3, num4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_contacts);
+        num1 = (EditText) findViewById(R.id.contact1);
+        num2 = (EditText) findViewById(R.id.contact2);
+        num3 = (EditText) findViewById(R.id.contact3);
+        num4 = (EditText) findViewById(R.id.contact4);
 
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Credentials", MODE_APPEND);
+        String contact4 = sharedPreferences.getString("Contact4", null);
+        if (contact4 != null) {
+
+            num1.setText(sharedPreferences.getString("Contact1", null));
+            num2.setText(sharedPreferences.getString("Contact2", null));
+            num3.setText(sharedPreferences.getString("Contact3", null));
+            num4.setText(sharedPreferences.getString("Contact4", null));
+        }
     }
 
     public void SubmitContacts (View view) {
-        EditText num1 = (EditText) findViewById(R.id.contact1);
-        EditText num2 = (EditText) findViewById(R.id.contact2);
-        EditText num3 = (EditText) findViewById(R.id.contact3);
-        EditText num4 = (EditText) findViewById(R.id.contact4);
 
         String phoneNo1 = num1.getText().toString();
         String phoneNo2 = num2.getText().toString();
@@ -52,11 +63,8 @@ public class UserContacts extends AppCompatActivity {
             editor.putString("Contact3", phoneNo3);
             editor.putString("Contact4", phoneNo4);
             editor.apply();
+            Intent intent = new Intent(this, Help.class);
+            startActivity(intent);
         }
-
-
-
-
-
     }
 }
